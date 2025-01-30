@@ -14,7 +14,7 @@ struct WelcomeView: View {
                 Text("Welcome!")
                     .frame(maxHeight: .infinity)
 
-                NavigationLink(destination: {Text("OnBoarding Completed")}) {
+                NavigationLink(destination: OnboardingCompletedView()) {
                     Text("Get Started")
                         .callToActionButtonStyle()
                 }
