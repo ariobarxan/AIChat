@@ -27,9 +27,6 @@ struct AppView: View {
                 }
             }
         )
-        .onTapGesture {
-            showTabBar.toggle()
-        }
     }
 }
 
