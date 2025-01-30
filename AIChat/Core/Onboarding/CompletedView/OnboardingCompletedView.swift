@@ -15,12 +15,7 @@ struct OnboardingCompletedView: View {
 
             Button(action: onFinishedButtonPressed) {
                 Text("Finish")
-                    .font(.headline)
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 55)
-                    .background(.accent)
-                    .cornerRadius(16)
+                    .callToActionButtonStyle()
             }
         }
         .padding()
