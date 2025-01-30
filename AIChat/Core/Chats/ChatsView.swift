@@ -11,8 +11,8 @@ struct ChatsView: View {
     var body: some View {
         NavigationStack {
             Text("Chats")
+                .navigationTitle("Chats")
         }
-        .navigationTitle("Chats")
     }
 }
 
