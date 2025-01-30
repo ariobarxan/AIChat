@@ -12,22 +12,21 @@ struct AppView: View {
     @State var showTabBar: Bool = false
 
     var body: some View {
-        ZStack {
-            if showTabBar {
+        AppViewBuilder(
+            showTabBar: showTabBar,
+            mainView: {
                 ZStack {
                     Color.red.ignoresSafeArea()
                     Text("Tabbar")
                 }
-                    .transition(.move(edge: .trailing))
-            } else {
+            },
+            onboardingView: {
                 ZStack {
                     Color.blue.ignoresSafeArea()
                     Text("Onboarding")
                 }
-                    .transition(.move(edge: .leading))
             }
-        }
-        .animation(.smooth, value: showTabBar)
+        )
         .onTapGesture {
             showTabBar.toggle()
         }
