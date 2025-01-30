@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(AppState.self) private var appState
 
     var body: some View {
         NavigationStack {
@@ -23,9 +24,11 @@ struct SettingView: View {
 
     private func onSignOutPressed() {
         presentationMode.wrappedValue.dismiss()
+        appState.updateViewState(showTabBarView: false)
     }
 }
 
 #Preview {
     SettingView()
+        .environment(AppState())
 }
