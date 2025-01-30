@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
-    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
 
     var body: some View {
@@ -24,7 +24,7 @@ struct SettingView: View {
 
     private func onSignOutPressed() {
         // TODO: Logic to sign user out of the app
-        presentationMode.wrappedValue.dismiss()
+        dismiss()
 
         Task {
             try? await Task.sleep(for: .seconds(0.5))
