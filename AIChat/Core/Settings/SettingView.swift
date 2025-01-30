@@ -23,8 +23,13 @@ struct SettingView: View {
     }
 
     private func onSignOutPressed() {
+        // TODO: Logic to sign user out of the app
         presentationMode.wrappedValue.dismiss()
-        appState.updateViewState(showTabBarView: false)
+
+        Task {
+            try? await Task.sleep(for: .seconds(0.5))
+            appState.updateViewState(showTabBarView: false)
+        }
     }
 }
 
