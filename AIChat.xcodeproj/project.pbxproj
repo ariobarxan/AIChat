@@ -27,6 +27,7 @@
 		FBB4B9BB2D4B7D77008ACEB4 /* AIChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB4B9CC2D4B7D78008ACEB4 /* AIChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB4B9D62D4B7D78008ACEB4 /* AIChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBB4B9EF2D4B81D4008ACEB4 /* GITWorkFlow.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = GITWorkFlow.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +76,7 @@
 		FBB4B9B22D4B7D77008ACEB4 = {
 			isa = PBXGroup;
 			children = (
+				FBB4B9EE2D4B81A4008ACEB4 /* Documentation */,
 				FBB4B9BD2D4B7D77008ACEB4 /* AIChat */,
 				FBB4B9CF2D4B7D78008ACEB4 /* AIChatTests */,
 				FBB4B9D92D4B7D78008ACEB4 /* AIChatUITests */,
@@ -90,6 +92,14 @@
 				FBB4B9D62D4B7D78008ACEB4 /* AIChatUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FBB4B9EE2D4B81A4008ACEB4 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				FBB4B9EF2D4B81D4008ACEB4 /* GITWorkFlow.md */,
+			);
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
