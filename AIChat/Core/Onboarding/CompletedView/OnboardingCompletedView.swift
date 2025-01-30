@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct OnboardingCompletedView: View {
+    @Environment(AppState.self) private var appState
+
     var body: some View {
         VStack {
             Text("Onboarding Completed")
@@ -23,9 +25,11 @@ struct OnboardingCompletedView: View {
 
     private func onFinishedButtonPressed() {
         // TODO: logic to complete onboarding
+        appState.updateViewState(showTabBarView: true)
     }
 }
 
 #Preview {
     OnboardingCompletedView()
+        .environment(AppState())
 }
