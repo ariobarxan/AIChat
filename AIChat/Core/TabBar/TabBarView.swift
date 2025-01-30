@@ -22,7 +22,7 @@ struct TabBarView: View {
 
             ProfileView()
                 .tabItem {
-                    Label("Profile", systemImage: "preson.fill")
+                    Label("Profile", systemImage: "person.fill")
                 }
         }
     }
