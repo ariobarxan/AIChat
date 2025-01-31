@@ -51,7 +51,7 @@ struct WelcomeView: View {
                 .underline()
                 .font(.body)
                 .padding(8)
-                .background(Color.black.opacity(0.001))
+                .tappableBackgroundStyle()
                 .onTapGesture {
                     // TODO: Implement logic
                 }
