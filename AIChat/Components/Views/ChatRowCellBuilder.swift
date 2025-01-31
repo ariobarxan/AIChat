@@ -8,11 +8,83 @@
 import SwiftUI
 
 struct ChatRowCellBuilder: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+    var currentUserId: String? = ""
+    var chat: ChatModel = .mock
+    var getAvatar: () async -> AvatarModel?
+    var getLastChatMessage: () async -> ChatMessageModel?
+
+    @State private var avatar: AvatarModel?
+    @State private var lastChatMessage: ChatMessageModel?
+
+    @State private var didLoadAvatar: Bool = false
+    @State private var didLoadChatMessage: Bool = false
+
+    private var isLoading: Bool {
+        if didLoadAvatar && didLoadChatMessage {
+            return false
+        }
+
+        return true
     }
+
+    private var hasNewChat: Bool {
+        guard let lastChatMessage, let currentUserId else { return false }
+        return lastChatMessage.hasBeenSeenBy(userId: currentUserId)
+    }
+
+    private var subheadline: String? {
+        if isLoading {
+            return "xxxx xxxx xxxxx xxxx"
+        }
+
+        if avatar == nil && lastChatMessage == nil {
+            return "Error"
+        }
+
+        return lastChatMessage?.content
+    }
+
+    var body: some View {
+        ChatRowCell(
+            imageName: avatar?.profileImageName,
+            headline: isLoading ? "xxxx xxxx" : avatar?.name,
+            subheadline: subheadline,
+            hasNewChat: isLoading ? false : hasNewChat
+        )
+        .redacted(reason: isLoading ? .placeholder : [])
+        .task {
+            avatar = await getAvatar()
+            didLoadAvatar = true
+        }
+        .task {
+            lastChatMessage = await getLastChatMessage()
+            didLoadChatMessage = true
+        }
+    }
+
 }
 
 #Preview {
-    ChatRowCellBuilder()
+    VStack {
+        ChatRowCellBuilder(chat: .mock, getAvatar: {
+            try? await Task.sleep(for: .seconds(5))
+            return .mock
+        }, getLastChatMessage: {
+            try? await Task.sleep(for: .seconds(5))
+            return .mock
+        })
+
+        ChatRowCellBuilder(chat: .mock, getAvatar: {
+            .mock
+        }, getLastChatMessage: {
+            .mock
+        })
+
+        ChatRowCellBuilder(chat: .mock, getAvatar: {
+            nil
+        }, getLastChatMessage: {
+            nil
+        })
+    }
 }
