@@ -146,7 +146,7 @@ struct CreateAvatarView: View {
                 action: onSavePressed
             )
             .removeListRowFormatting()
-            .padding(.top, 24)
+            .padding(.top, 8)
             .opacity(generatedImage == nil ? 0.5 : 1.0)
             .disabled(generatedImage == nil)
         }
