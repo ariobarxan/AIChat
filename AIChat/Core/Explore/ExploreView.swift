@@ -39,22 +39,26 @@ struct ExploreView: View {
     }
 
     private var categorySection: some View {
-        Section {
-            ZStack {
-                ScrollView(.horizontal) {
-                    HStack(spacing: 12) {
-                        ForEach(categories, id: \.self) { category in
-                            CategoryCell(
-                                title: category.rawValue.capitalized,
-                                imageName: Constants.randomImage
-                            )
-                        }
+        var scrollView: some View {
+            ScrollView(.horizontal) {
+                HStack(spacing: 12) {
+                    ForEach(categories, id: \.self) { category in
+                        CategoryCell(
+                            title: category.rawValue.capitalized,
+                            imageName: Constants.randomImage
+                        )
                     }
                 }
-                .frame(height: 140)
-                .scrollIndicators(.hidden)
-                .scrollTargetLayout()
-                .scrollTargetBehavior(.viewAligned)
+            }
+            .frame(height: 140)
+            .scrollIndicators(.hidden)
+            .scrollTargetLayout()
+            .scrollTargetBehavior(.viewAligned)
+        }
+
+        return Section {
+            ZStack {
+                scrollView
             }
             .removeListRowFormatting()
         } header: {
