@@ -12,24 +12,45 @@ struct ChatView: View {
     @State private var chatMessages: [ChatMessageModel] = ChatMessageModel.mocks
     @State private var avatar: AvatarModel? = .mock
     @State private var currentUser: UserModel? = .mock
+    @State private var textFieldText: String = ""
+    @State private var showChatSettings: Bool = false
+    @State private var scrollPosition: String?
 
     var body: some View {
         VStack(spacing: 0) {
-            ScrollView {
-                LazyVStack(spacing: 24) {
-                    ForEach(chatMessages) { message in
-                        messageView(message)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                .padding(8)
-            }
+            scrollViewSection
 
-            Rectangle()
-                .frame(height: 50)
+            textFieldSection
         }
         .navigationTitle(avatar?.name ?? "Chat")
         .toolbarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Image(systemName: "ellipsis")
+                    .padding(8)
+                    .anyButton {
+                        onChatSettingsPressed()
+                    }
+            }
+        }
+        .confirmationDialog("", isPresented: $showChatSettings, actions: dialogueViews, message: dialogueTitle)
+    }
+
+    private var scrollViewSection: some View {
+        ScrollView {
+            LazyVStack(spacing: 24) {
+                ForEach(chatMessages) { message in
+                    messageView(message)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .padding(8)
+            .rotationEffect(.degrees(180))
+        }
+        .rotationEffect(.degrees(180))
+        .scrollPosition(id: $scrollPosition, anchor: .center)
+        .animation(.default, value: chatMessages.count)
+        .animation(.default, value: scrollPosition)
     }
 
     private func messageView(_ message: ChatMessageModel) -> some View {
@@ -39,6 +60,80 @@ struct ChatView: View {
             isCurrentUser: isCurrentUser,
             imageName: isCurrentUser ? nil : avatar?.profileImageName
         )
+        .id(message.id)
+    }
+
+    private var textFieldSection: some View {
+
+        var sendButton: some View {
+            Image(systemName: "arrow.up.circle.fill")
+                .font(.system(size: 32))
+                .padding(.trailing, 4)
+                .foregroundStyle(.accent)
+                .anyButton(.plain, action: {
+                    onSendMessagePressed()
+                })
+        }
+
+        var background: some View {
+            ZStack {
+                RoundedRectangle(cornerRadius: 100)
+                    .fill(Color(uiColor: .systemBackground))
+
+                RoundedRectangle(cornerRadius: 100)
+                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+            }
+        }
+
+        return TextField("Say something...", text: $textFieldText)
+            .keyboardType(.alphabet)
+            .autocorrectionDisabled()
+            .padding(12)
+            .padding(.trailing, 60)
+            .overlay(alignment: .trailing, content: {sendButton})
+            .background(background)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .background(Color(uiColor: .secondarySystemBackground))
+    }
+
+    private func onSendMessagePressed() {
+        guard let currentUser else { return }
+
+        let content = textFieldText
+
+        let message = ChatMessageModel(
+            id: UUID().uuidString,
+            chatId: UUID().uuidString,
+            authorId: currentUser.userId,
+            content: content,
+            seenByIds: nil,
+            dateCreated: .now
+        )
+        chatMessages.append(message)
+
+        scrollPosition = message.id
+
+        textFieldText = ""
+    }
+
+    private func onChatSettingsPressed() {
+        showChatSettings = true
+    }
+
+    private func dialogueViews() -> some View {
+        Group {
+            Button("Report User / Chat", role: .destructive) {
+
+            }
+            Button("Delete Chat", role: .destructive) {
+
+            }
+        }
+    }
+
+    private func dialogueTitle() -> some View {
+        Text("What would you like to do?")
     }
 }
 
