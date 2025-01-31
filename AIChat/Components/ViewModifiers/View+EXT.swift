@@ -30,7 +30,6 @@ extension View {
             .cornerRadius(6)
     }
 
-
     func tappableBackgroundStyle() -> some View {
         background(Color.black.opacity(0.001))
     }
@@ -50,4 +49,14 @@ extension View {
             ], startPoint: .top, endPoint: .bottom)
         )
     }
+
+    @ViewBuilder
+    func ifSatisfiedCondition(_ condition: Bool, transform: (Self) -> some View) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+
 }
