@@ -32,6 +32,8 @@ struct ExploreView: View {
                         subtitle: avatar.characterDescription,
                         imageName: avatar.profileImageName
                     )
+                    .anyButton {
+                    }
                 }
             }
             .removeListRowFormatting()
@@ -49,6 +51,9 @@ struct ExploreView: View {
                             title: category.rawValue.capitalized,
                             imageName: Constants.randomImage
                         )
+                        .anyButton {
+
+                        }
                     }
                 }
             }

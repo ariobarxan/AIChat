@@ -47,16 +47,17 @@ struct OnboardingCompletedView: View {
     }
 
     private var ctaButton: some View {
-        Button(action: onFinishedButtonPressed) {
-            ZStack {
-                if isCompletingProfileSetup {
-                    ProgressView()
-                        .tint(.white)
-                } else {
-                    Text("Finish")
-                }
+        ZStack {
+            if isCompletingProfileSetup {
+                ProgressView()
+                    .tint(.white)
+            } else {
+                Text("Finish")
             }
-            .callToActionButtonStyle()
+        }
+        .callToActionButtonStyle()
+        .anyButton(.press) {
+            onFinishedButtonPressed()
         }
         .disabled(isCompletingProfileSetup)
     }
