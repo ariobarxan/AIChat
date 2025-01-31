@@ -29,7 +29,7 @@ struct OnboardingIntroView: View {
             .frame(maxHeight: .infinity)
             .padding(24)
 
-            NavigationLink(destination: {Text("OnboardingColorView")}) {
+            NavigationLink(destination: OnboardingColorView()) {
                 Text("Continue")
                     .callToActionButtonStyle()
             }
