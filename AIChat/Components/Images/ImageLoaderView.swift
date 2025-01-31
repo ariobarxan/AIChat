@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ImageLoaderView: View {
-    var urlString: String = "https://picsum.photos/600/600"
+    var urlString: String = Constants.randomImage
     var resizingMode: ContentMode = .fill
 
     var body: some View {
