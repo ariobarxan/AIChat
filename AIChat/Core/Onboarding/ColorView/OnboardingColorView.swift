@@ -27,6 +27,7 @@ struct OnboardingColorView: View {
             .background(Color(uiColor: .systemBackground))
         }
         .animation(.bouncy, value: selectedColor)
+        .toolbar(.hidden, for: .navigationBar)
     }
 
     private var colorGrid: some View {
