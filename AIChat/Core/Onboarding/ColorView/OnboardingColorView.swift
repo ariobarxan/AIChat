@@ -38,7 +38,7 @@ struct OnboardingColorView: View {
                 .frame(maxWidth: .infinity)
         }
 
-        func circle(with color: Color) -> some View{
+        func circle(with color: Color) -> some View {
             color
                 .clipShape(Circle())
                 .padding(selectedColor == color ? 10 : 0)
