@@ -15,14 +15,10 @@ struct AppView: View {
         AppViewBuilder(
             showTabBar: appState.showTabBar,
             mainView: {
-                ZStack {
-                    TabBarView()
-                }
+                TabBarView()
             },
             onboardingView: {
-                ZStack {
-                    WelcomeView()
-                }
+                WelcomeView()
             }
         )
         .environment(appState)
