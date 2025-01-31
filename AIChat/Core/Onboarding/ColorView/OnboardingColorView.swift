@@ -19,7 +19,7 @@ struct OnboardingColorView: View {
         .safeAreaInset(edge: .bottom, alignment: .center, spacing: 16) {
             ZStack {
                 if let selectedColor {
-                    ctaButton
+                    ctaButton(selectedColor: selectedColor)
                         .transition(AnyTransition.move(edge: .bottom))
                 }
             }
@@ -67,8 +67,8 @@ struct OnboardingColorView: View {
             }
     }
 
-    private var ctaButton: some View {
-        NavigationLink(destination: OnboardingCompletedView()) {
+    private func ctaButton(selectedColor: Color) -> some View {
+        NavigationLink(destination: OnboardingCompletedView(selectedColor: selectedColor)) {
             Text("Continue")
                 .callToActionButtonStyle()
         }
@@ -79,4 +79,5 @@ struct OnboardingColorView: View {
     NavigationStack {
         OnboardingColorView()
     }
+    .environment(AppState())
 }

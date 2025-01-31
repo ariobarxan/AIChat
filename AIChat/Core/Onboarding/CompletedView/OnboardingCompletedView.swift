@@ -10,8 +10,7 @@ import SwiftUI
 struct OnboardingCompletedView: View {
     @Environment(AppState.self) private var appState
     @State private var isCompletingProfileSetup: Bool = false
-    private var selectedColor: Color = .orange
-
+    var selectedColor: Color = .orange
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
