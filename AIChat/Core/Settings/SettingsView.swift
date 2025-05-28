@@ -14,7 +14,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Button{
+                Button {
                     onSingoutPressed()
                 } label: {
                     Text("Sign out")
@@ -30,7 +30,7 @@ struct SettingsView: View {
         
         Task {
             try? await Task.sleep(for: .seconds(1))
-            appState.updateAppState(showTabBarView: false)
+            appState.updateViewState(showTabBarView: false)
         }
         
     }

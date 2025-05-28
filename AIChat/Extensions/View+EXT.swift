@@ -22,4 +22,3 @@ extension View {
         background(Color.black.opacity(0.001))
     }
 }
-

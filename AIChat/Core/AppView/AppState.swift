@@ -18,7 +18,7 @@ import SwiftUI
         self.showTabBar = showTabBar
     }
     
-    func updateAppState(showTabBarView: Bool) {
+    func updateViewState(showTabBarView: Bool) {
         showTabBar = showTabBarView
     }
     

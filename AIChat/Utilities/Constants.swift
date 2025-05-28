@@ -12,4 +12,3 @@ struct Constants {
     static let privacyPolicyUrl = "https://www.apple.com"
     static let termsOfServiceUrl = "https://www.apple.com"
 }
-

@@ -46,4 +46,3 @@ struct OnboardingIntroView: View {
         OnboardingIntroView()
     }
 }
-
