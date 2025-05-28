@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.dismiss) private var dissmiss
     @Environment(AppState.self) private var appState
     
     var body: some View {
@@ -25,7 +26,13 @@ struct SettingsView: View {
     
     func onSingoutPressed() {
         // add logic later here
-        appState.updateAppState(showTabBarView: false)
+        dissmiss()
+        
+        Task {
+            try? await Task.sleep(for: .seconds(1))
+            appState.updateAppState(showTabBarView: false)
+        }
+        
     }
 }
 
