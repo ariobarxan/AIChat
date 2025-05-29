@@ -43,6 +43,7 @@ struct OnboardingColorView: View {
                         Circle()
                             .fill(.accent)
                             .overlay(
+                                // Selected Circle
                                 color
                                     .clipShape(Circle())
                                     .padding(selectedColor == color ? 10 : 0)

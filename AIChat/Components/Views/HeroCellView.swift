@@ -37,6 +37,7 @@ struct HeroCellView: View {
             .padding(16)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
+                // To Make the text background darker and making the text more readable
                 LinearGradient(colors: [
                     Color.black.opacity(0),
                     Color.black.opacity(0.3),
